@@ -1,5 +1,4 @@
 const { createApp } = Vue;
-
 createApp({
   data() {
     return {
@@ -8,7 +7,6 @@ createApp({
           name: "Michele",
           avatar: "/img/avatar_1.jpg",
           visible: true,
-
           messages: [
             {
               date: "10/01/2020 15:30:55",
@@ -173,20 +171,13 @@ createApp({
       this.addNewMessage();
       this.getAnswer();
       this.clearInputField();
-      /* console.log(DateTime.now().toFormat("mm-dd-yyyy")) */
-      console.log(
-        DateTime.now()
-          .setZone("America/New_York")
-          .minus({ weeks: 1 })
-          .endOf("day")
-          .toISO()
-      );
     },
 
     addNewMessage() {
       if (this.activeContact != null && this.userText.length > 0) {
+        const currentDate = new Date();
         this.activeContact.messages.push({
-          date: 1,
+          date: `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`,
           message: this.userText,
           status: "sent",
         });

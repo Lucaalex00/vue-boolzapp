@@ -50,29 +50,26 @@
                     </div>
                     
                     <div v-for="(contact,index) in contacts" class="left-contacts-menu debug">
-                         <div class="contact-menu-container debug flex">
-
-                        </div>
                         <div class="contact flex" @click="showMainConversation(contact)">
-                        <div class="contact-left flex">
-                            <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
+                            <div class="contact-left flex">
+                                <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
+                                </div>
+                                <div class="contact-info">
+                                    <h4>{{contact.name}}</h4>
+                                    <p>{{getLastMessageTime(contact)}}</p>
+                                </div>
                             </div>
-                            <div class="contact-info">
-                                <h4>{{contact.name}}</h4>
-                                <p>{{getLastMessageTime(contact)}}</p>
-                            </div>
-                        </div>
                         <div class="contact-timetable ">
-                             {{ getLastMessageTime(contact) }}
-                        </div>
+                            12.00
                         </div>
                     </div>
+                </div>
                 </div>
                 <div id="right-container" class="relative col-8 col-sm-12 col-m-11 debug">
                     <header class="right-header debug flex">
                         <div class="right-header-left-container flex">
                             <div class="right-header-img">
-                                <img src="./assets/img/avatar_1.jpg" alt="Avatar">
+                                <img :src="activeContact!=null ? './assets' + activeContact.avatar : './assets/img/avatar_io.jpg' " alt="Avatar">
                             </div>
                             <div class="right-header-info flex">
                                 <h4>{{activeContact ? activeContact.name : 'Contact'}}</h4>
@@ -93,7 +90,7 @@
                         <template v-if="activeContact!=null && activeContact.messages.length>0">
                         <!-- RIGHT -->
                         <div class="relative flex" :class="message.status == 'sent' ? 'colored-bubble' : 'colourless-bubble'" v-for="message in activeContact.messages">
-                        <div v-if>
+                        <div>
 
                             <p>{{message.message}}  </p>
                         
@@ -107,7 +104,7 @@
                                 </div>
                             </div>
 
-                            <div class="bubble-timetable absolute">H&M</div>
+                            <div class="bubble-timetable absolute">{{message.date}}</div>
                         </div>
                     </div>                    
                     </template>
@@ -137,7 +134,7 @@
     </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue-luxon@0.10.0/dist/vue-luxon.cjs.min.js"></script><!-- LUXON -->
+<script src="./assets/js/luxon.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- VUEJS -->
 <script src="./assets/js/app.js"></script>
 </body>

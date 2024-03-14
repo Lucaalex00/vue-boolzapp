@@ -484,7 +484,7 @@ input:hover {
     }
 
     .contacts-menu-container {
-        max-height: 100%;
+        overflow-y: scroll;
     }
 
     .left-contacts-menu {
