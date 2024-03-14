@@ -48,116 +48,12 @@
                             <input type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    <div v-for="contact in contacts" class="left-contacts-menu debug">
+                    
+                    <div v-for="(contact,index) in contacts" class="left-contacts-menu debug">
                          <div class="contact-menu-container debug flex">
 
-                           <!-- <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_1.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Michele</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_2.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Fabio</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_3.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Samuele</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_4.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Alessandro B.</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_5.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Alessandro L.</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_6.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Giulia</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_7.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Carlo</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div>
-                            <div class="contact flex">
-                                <div class="contact-left flex">
-                                    <div class="contact-img"><img src="./assets/img/avatar_8.jpg" alt="Avatar">
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Zio</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                </div>
-                                <div class="contact-timetable">
-                                    16.15
-                                </div>
-                            </div> -->
-
                         </div>
-                    <div><div class="contact flex">
+                        <div class="contact flex" @click="showMainConversation(contact)">
                         <div class="contact-left flex">
                             <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
                             </div>
@@ -166,10 +62,10 @@
                                 <p>""LAST MESSAGE""</p>
                             </div>
                         </div>
-                        <div class="contact-timetable">
-                            ""H & M"
+                        <div class="contact-timetable ">
+                             {{ getLastMessageTime(contact) }}
                         </div>
-                    </div></div>
+                        </div>
                     </div>
                 </div>
                 <div id="right-container" class="relative col-8 col-sm-12 col-m-11 debug">
@@ -193,11 +89,11 @@
                     </header>
                     <!--/HEADER-->
 
-                    <main v-for="contact in contacts"  id="main-chat" class="debug flex p1" >
-                        <div class="colored-bubble relative flex" v-for="messageEl in contact.messages" >
-                            <p v-if="contact.name==='Michele' &&messageEl.status ==='sent'">{{messageEl.message}}  
-                            </p>
-
+                    <main id="main-chat" class="debug flex p1">
+                        <template v-if="activeContact!=null && activeContact.messages.length>0">
+                        <div class="colored-bubble relative flex" v-for="message in activeContact.messages">
+                            <p>{{message.message}}  </p>
+                        
                             <a href="#">
                                 <i class="logo fa-solid fa-angle-down">
                                 </i>
@@ -208,11 +104,11 @@
                                 </div>
                             </div>
 
-                            <div class="bubble-timetable absolute">16.13</div>
+                            <div class="bubble-timetable absolute">H&M</div>
                         </div>
 
                         <div class="colourless-bubble relative flex">
-                          <p>xd</p>
+                          <p></p>
                             <a href="#">
                                 <i class="logo fa-solid fa-angle-down">
                                 </i>
@@ -224,6 +120,10 @@
                             </div>
                             <div class="bubble-timetable absolute">16.15</div>
                         </div>
+                    </template>
+                    <div v-else>
+                        There aren't messages !!!
+                    </div>
                     </main>
                     <!--/MAIN-->
 

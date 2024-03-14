@@ -5,29 +5,29 @@ createApp({
         return{
             contacts: [
                 {
-                name: 'Michele',
-                avatar: '/img/avatar_1.jpg',
-                visible: true,
+                  name: 'Michele',
+                  avatar: '/img/avatar_1.jpg',
+                  visible: true,
 
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Hai portato a spasso il cane?',
-                status: 'sent'
-                },
+                  messages: [
+                    {
+                      date: '10/01/2020 15:30:55',
+                      message: 'Hai portato a spasso il cane?',
+                      status: 'sent'
+                    },
 
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'Ricordati di stendere i panni',
-                status: 'sent'
-                },
+                    {
+                      date: '10/01/2020 15:50:00',
+                      message: 'Ricordati di stendere i panni',
+                      status: 'sent'
+                    },
 
-                {
-                date: '10/01/2020 16:15:22',
-                message: 'Tutto fatto!',
-                status: 'received'
-                }
-                ],
+                    {
+                      date: '10/01/2020 16:15:22',
+                      message: 'Tutto fatto!',
+                      status: 'received'
+                    }
+                  ],
                 },
 
                 {
@@ -157,33 +157,39 @@ createApp({
                 name: 'Davide',
                 avatar: '/img/avatar_8.jpg',
                 visible: true,
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Ciao, andiamo a mangiare la pizza stasera?',
-                status: 'received'
-                },
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                status: 'sent'
-                },
-                {
-                date: '10/01/2020 15:51:00',
-                message: 'OK!!',
-                status: 'received'
-                }
-                ],
+                messages:[],
                 }
                 ],
                 hours: 0,
                 mins:0,
+
+              activeContact: null,
         }
     },
     methods:{
-        messageDate(hour,min){
-        hour=date.getHours();
-        min=date.getMinutes();
-        }
-    }
+        showMainConversation(contact) {
+          this.activeContact = contact;
+            if(this.activeContact.messages.length>0){
+            console.log(contact.messages[0].status)
+            }else{
+              console.log('there aren\'t message')
+            }
+          },
+        getStatus(contact){
+          console.log(contact.messages.status)
+          return contact.status
+        },
+        getLastMessage(contact) {
+            if (contact.messages.length > 0) {
+              return contact.messages[contact.messages.length - 1].message;
+            }
+            return '';
+          },
+        getLastMessageTime(contact) {
+            if (contact.messages.length > 0) {
+              return contact.messages[contact.messages.length - 1].date;
+            }
+            return '';
+            }
+          },
 }).mount('#app')
