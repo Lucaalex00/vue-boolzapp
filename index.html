@@ -48,9 +48,10 @@
                             <input type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    <div class="left-contacts-menu debug">
-                       <!--  <div class="contact-menu-container debug flex">
-                            <div class="contact flex">
+                    <div v-for="contact in contacts" class="left-contacts-menu debug">
+                         <div class="contact-menu-container debug flex">
+
+                           <!-- <div class="contact flex">
                                 <div class="contact-left flex">
                                     <div class="contact-img"><img src="./assets/img/avatar_1.jpg" alt="Avatar">
                                     </div>
@@ -153,9 +154,22 @@
                                 <div class="contact-timetable">
                                     16.15
                                 </div>
-                            </div>
+                            </div> -->
 
-                        </div> -->
+                        </div>
+                    <div><div class="contact flex">
+                        <div class="contact-left flex">
+                            <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
+                            </div>
+                            <div class="contact-info">
+                                <h4>{{contact.name}}</h4>
+                                <p>""LAST MESSAGE""</p>
+                            </div>
+                        </div>
+                        <div class="contact-timetable">
+                            ""H & M"
+                        </div>
+                    </div></div>
                     </div>
                 </div>
                 <div id="right-container" class="relative col-8 col-sm-12 col-m-11 debug">
@@ -179,13 +193,9 @@
                     </header>
                     <!--/HEADER-->
 
-                    <main id="main-chat" class="debug flex p1">
-                        <div class="colored-bubble relative flex ">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto commodi eligendi
-                                rerum ullam fugit blanditiis ipsam, minus recusandae aut porro nobis ducimus quasi eos
-                                harum magnam nostrum.
-                                <span><br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quos saepe
-                                    libero quidem voluptate quam.</span>
+                    <main v-for="contact in contacts"  id="main-chat" class="debug flex p1" >
+                        <div class="colored-bubble relative flex" v-for="messageEl in contact.messages" >
+                            <p v-if="contact.name==='Michele' &&messageEl.status ==='sent'">{{messageEl.message}}  
                             </p>
 
                             <a href="#">
@@ -202,9 +212,7 @@
                         </div>
 
                         <div class="colourless-bubble relative flex">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate esse et repellendus
-                                dolorem amet? Explicabo nostrum soluta eaque corporis harum! Recusandae, molestias. In
-                                adipisci cum assumenda nulla! Quidem, quibusdam fugit.</p>
+                          <p>xd</p>
                             <a href="#">
                                 <i class="logo fa-solid fa-angle-down">
                                 </i>

@@ -229,7 +229,7 @@ body {
 
 .left-contacts-menu {
     height: 90%;
-    overflow-y: auto;
+
 }
 
 .contact-menu-container {
@@ -310,7 +310,6 @@ body {
 .colored-bubble,
 .colourless-bubble {
     border-radius: 10px;
-    width: 60%;
     max-height: 50%;
     padding: 0.6rem;
 
