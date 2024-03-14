@@ -1,195 +1,238 @@
-const {createApp}= Vue
+const { createApp } = Vue;
 
 createApp({
-    data(){
-        return{
-            contacts: [
-                {
-                  name: 'Michele',
-                  avatar: '/img/avatar_1.jpg',
-                  visible: true,
+  data() {
+    return {
+      contacts: [
+        {
+          name: "Michele",
+          avatar: "/img/avatar_1.jpg",
+          visible: true,
 
-                  messages: [
-                    {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Hai portato a spasso il cane?',
-                      status: 'sent'
-                    },
+          messages: [
+            {
+              date: "10/01/2020 15:30:55",
+              message: "Hai portato a spasso il cane?",
+              status: "sent",
+            },
 
-                    {
-                      date: '10/01/2020 15:50:00',
-                      message: 'Ricordati di stendere i panni',
-                      status: 'sent'
-                    },
+            {
+              date: "10/01/2020 15:50:00",
+              message: "Ricordati di stendere i panni",
+              status: "sent",
+            },
 
-                    {
-                      date: '10/01/2020 16:15:22',
-                      message: 'Tutto fatto!',
-                      status: 'received'
-                    }
-                  ],
-                },
-
-                {
-                name: 'Fabio',
-                avatar: '/img/avatar_2.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '20/03/2020 16:30:00',
-                message: 'Ciao come stai?',
-                status: 'sent'
-                },
-                {
-                date: '20/03/2020 16:30:55',
-                message: 'Bene grazie! Stasera ci vediamo?',
-                status: 'received'
-                },
-                {
-                date: '20/03/2020 16:35:00',
-                message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                status: 'sent'
-                }
-                ],
-                },
-
-                {
-                name: 'Samuele',
-                avatar: '/img/avatar_3.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '28/03/2020 10:10:40',
-                message: 'La Marianna va in campagna',
-                status: 'received'
-                },
-                {
-                date: '28/03/2020 10:20:10',
-                message: 'Sicuro di non aver sbagliato chat?',
-                status: 'sent'
-                },
-                {
-                date: '28/03/2020 16:15:22',
-                message: 'Ah scusa!',
-                status: 'received'
-                }
-                ],
-                },
-
-                {
-                name: 'Alessandro B.',
-                avatar: '/img/avatar_4.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Lo sai che ha aperto una nuova pizzeria?',
-                status: 'sent'
-                },
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'Si, ma preferirei andare al cinema',
-                status: 'received'
-                }
-                ],
-                },
-
-                {
-                name: 'Alessandro L.',
-                avatar: '/img/avatar_5.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Ricordati di chiamare la nonna',
-                status: 'sent'
-                },
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'Va bene, stasera la sento',
-                status: 'received'
-                }
-                ],
-                },
-
-                {
-                name: 'Claudia',
-                avatar: '/img/avatar_6.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Ciao Claudia, hai novità?',
-                status: 'sent'
-                },
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'Non ancora',
-                status: 'received'
-                },
-                {
-                date: '10/01/2020 15:51:00',
-                message: 'Nessuna nuova, buona nuova',
-                status: 'sent'
-                }
-                ],
-                },
-
-                {
-                name: 'Federico',
-                avatar: '/img/avatar_7.jpg',
-                visible: true,
-                messages: [
-                {
-                date: '10/01/2020 15:30:55',
-                message: 'Fai gli auguri a Martina che è il suo compleanno!',
-                status: 'sent'
-                },
-                {
-                date: '10/01/2020 15:50:00',
-                message: 'Grazie per avermelo ricordato, le scrivo subito!',
-                status: 'received'
-                }
-                ],
-                },
-
-                {
-                name: 'Davide',
-                avatar: '/img/avatar_8.jpg',
-                visible: true,
-                messages:[],
-                }
-                ],
-                hours: 0,
-                mins:0,
-
-              activeContact: null,
-        }
-    },
-    methods:{
-        showMainConversation(contact) {
-          this.activeContact = contact;
-            if(this.activeContact.messages.length>0){
-            console.log(contact.messages[0].status)
-            }else{
-              console.log('there aren\'t message')
-            }
-          },
-        getStatus(contact){
-          console.log(contact.messages.status)
-          return contact.status
+            {
+              date: "10/01/2020 16:15:22",
+              message: "Tutto fatto!",
+              status: "received",
+            },
+          ],
         },
-        getLastMessage(contact) {
-            if (contact.messages.length > 0) {
-              return contact.messages[contact.messages.length - 1].message;
-            }
-            return '';
-          },
-        getLastMessageTime(contact) {
-            if (contact.messages.length > 0) {
-              return contact.messages[contact.messages.length - 1].date;
-            }
-            return '';
-            }
-          },
-}).mount('#app')
+
+        {
+          name: "Fabio",
+          avatar: "/img/avatar_2.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "20/03/2020 16:30:00",
+              message: "Ciao come stai?",
+              status: "sent",
+            },
+            {
+              date: "20/03/2020 16:30:55",
+              message: "Bene grazie! Stasera ci vediamo?",
+              status: "received",
+            },
+            {
+              date: "20/03/2020 16:35:00",
+              message: "Mi piacerebbe ma devo andare a fare la spesa.",
+              status: "sent",
+            },
+          ],
+        },
+
+        {
+          name: "Samuele",
+          avatar: "/img/avatar_3.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "28/03/2020 10:10:40",
+              message: "La Marianna va in campagna",
+              status: "received",
+            },
+            {
+              date: "28/03/2020 10:20:10",
+              message: "Sicuro di non aver sbagliato chat?",
+              status: "sent",
+            },
+            {
+              date: "28/03/2020 16:15:22",
+              message: "Ah scusa!",
+              status: "received",
+            },
+          ],
+        },
+
+        {
+          name: "Alessandro B.",
+          avatar: "/img/avatar_4.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "10/01/2020 15:30:55",
+              message: "Lo sai che ha aperto una nuova pizzeria?",
+              status: "sent",
+            },
+            {
+              date: "10/01/2020 15:50:00",
+              message: "Si, ma preferirei andare al cinema",
+              status: "received",
+            },
+          ],
+        },
+
+        {
+          name: "Alessandro L.",
+          avatar: "/img/avatar_5.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "10/01/2020 15:30:55",
+              message: "Ricordati di chiamare la nonna",
+              status: "sent",
+            },
+            {
+              date: "10/01/2020 15:50:00",
+              message: "Va bene, stasera la sento",
+              status: "received",
+            },
+          ],
+        },
+
+        {
+          name: "Claudia",
+          avatar: "/img/avatar_6.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "10/01/2020 15:30:55",
+              message: "Ciao Claudia, hai novità?",
+              status: "sent",
+            },
+            {
+              date: "10/01/2020 15:50:00",
+              message: "Non ancora",
+              status: "received",
+            },
+            {
+              date: "10/01/2020 15:51:00",
+              message: "Nessuna nuova, buona nuova",
+              status: "sent",
+            },
+          ],
+        },
+
+        {
+          name: "Federico",
+          avatar: "/img/avatar_7.jpg",
+          visible: true,
+          messages: [
+            {
+              date: "10/01/2020 15:30:55",
+              message: "Fai gli auguri a Martina che è il suo compleanno!",
+              status: "sent",
+            },
+            {
+              date: "10/01/2020 15:50:00",
+              message: "Grazie per avermelo ricordato, le scrivo subito!",
+              status: "received",
+            },
+          ],
+        },
+
+        {
+          name: "Davide",
+          avatar: "/img/avatar_8.jpg",
+          visible: true,
+          messages: [],
+        },
+      ],
+      hours: 0,
+      mins: 0,
+
+      activeContact: null,
+      userText: "",
+      contactText: "ok",
+    };
+  },
+  methods: {
+    sendMessage() {
+      this.addNewMessage();
+      this.getAnswer();
+      this.clearInputField();
+      /* console.log(DateTime.now().toFormat("mm-dd-yyyy")) */
+      console.log(
+        DateTime.now()
+          .setZone("America/New_York")
+          .minus({ weeks: 1 })
+          .endOf("day")
+          .toISO()
+      );
+    },
+
+    addNewMessage() {
+      if (this.activeContact != null && this.userText.length > 0) {
+        this.activeContact.messages.push({
+          date: 1,
+          message: this.userText,
+          status: "sent",
+        });
+        console.log(this.userText);
+      }
+    },
+
+    clearInputField() {
+      this.userText = "";
+    },
+
+    getAnswer() {
+      if (this.activeContact != null && this.userText.length > 0) {
+        setTimeout(() => {
+          console.log(this.contactText);
+          const currentDate = new Date();
+          this.activeContact.messages.push({
+            date: `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`,
+            message: this.contactText,
+            status: "received",
+          });
+          console.log(
+            `${currentDate.toLocaleTimeString()} ${currentDate.toLocaleDateString()}`
+          );
+        }, 1000);
+      }
+    },
+
+    showMainConversation(contact) {
+      this.activeContact = { ...contact };
+    },
+    getStatus(contact) {
+      console.log(contact.messages.status);
+      return contact.status;
+    },
+    getLastMessage(contact) {
+      if (contact.messages.length > 0) {
+        return contact.messages[contact.messages.length - 1].message;
+      }
+      return "";
+    },
+    getLastMessageTime(contact) {
+      if (contact.messages.length > 0) {
+        return contact.messages[contact.messages.length - 1].date;
+      }
+      return "";
+    },
+  },
+}).mount("#app");
