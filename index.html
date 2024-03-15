@@ -48,18 +48,18 @@
                             <input v-model.trim="contactSearchText" @keyup.enter="getSearchedContacts(activeContact.name)" type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    <div v-for="(contact,index) in filteredContacts" class="left-contacts-menu debug">
+                    <div v-for="(contact) in filteredContacts" class="left-contacts-menu debug">
                         <div class="contact flex" @click="showMainConversation(contact)">
                             <div class="contact-left flex">
                                 <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
                                 </div>
                                 <div class="contact-info">
                                     <h4>{{contact.name}}</h4>
-                                    <p>{{getLastMessageTime(contact)}}</p>
+                                    <p>{{getLastMessage(contact)}}</p>
                                 </div>
                             </div>
                         <div class="contact-timetable ">
-                            12.00
+                            {{getLastMessageTime(contact).slice(10)}}
                         </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="right-header-info flex">
                                 <h4>{{activeContact ? activeContact.name : 'Contact'}}</h4>
-                                <p>Ultimo accesso oggi</p>
+                                <p>Online</p>
                             </div>
                         </div>
                         <div class="right-header-right-container flex">

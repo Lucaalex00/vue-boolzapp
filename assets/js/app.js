@@ -2,6 +2,7 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      /* My Object's Array */
       contacts: [
         {
           name: "Michele",
@@ -158,33 +159,45 @@ createApp({
           messages: [],
         },
       ],
-      hours: 0,
-      mins: 0,
-
+      /* My Variables */
       activeContact: null,
       userText: "",
       contactText: "ok",
       contactSearchText: "",
     };
   },
+  //Invoke a "COMPUTED" property
+  //That property is same as method, but it doesn't "RECALL" any function.
+  //It remember and follow the user's instruction
   computed: {
+    //f for contact's Filter
     filteredContacts() {
+      //Control when "INPUT TEXT" is empty
       if (!this.contactSearchText) {
+        //Return all "CONTACTS"
         return this.contacts;
       }
+      //Make a variable with same value of "INPUT TEXT" with LowerCase for control
       const searchText = this.contactSearchText.toLowerCase();
+      //Return "Contacts" array FILTERED
       return this.contacts.filter((contact) =>
+        //Control if "INPUT TEXT" is includes in "CONTACT.NAME" in LowerCase
         contact.name.toLowerCase().includes(searchText)
       );
     },
   },
   methods: {
+    //f to invoke :
+    //addNewMessage f
+    //getAnswer f
+    //clearInputField f
     sendMessage() {
       this.addNewMessage();
       this.getAnswer();
       this.clearInputField();
     },
 
+    //f for make user able to add new message from input field in "MAIN HTML"
     addNewMessage() {
       if (this.activeContact != null && this.userText.length > 0) {
         const currentDate = new Date();
@@ -197,10 +210,12 @@ createApp({
       }
     },
 
+    //f just for clear input field in "MAIN HTML"
     clearInputField() {
       this.userText = "";
     },
 
+    //f to get a dinamically "ok" from contact when user invoke addNewMessage f with 1 seconds' delay
     getAnswer() {
       if (this.activeContact != null && this.userText.length > 0) {
         setTimeout(() => {
@@ -216,21 +231,24 @@ createApp({
           );
         }, 1000);
       }
+      //f
+      //f
     },
 
+    //f then show Contact's conversation when invoked on a "CLICK"
     showMainConversation(contact) {
       this.activeContact = { ...contact };
     },
-    getStatus(contact) {
-      console.log(contact.messages.status);
-      return contact.status;
-    },
+
+    //f to keep last message and stamp in HTML
     getLastMessage(contact) {
       if (contact.messages.length > 0) {
         return contact.messages[contact.messages.length - 1].message;
       }
       return "";
     },
+
+    //f to keep last message TIME and stamp in HTML
     getLastMessageTime(contact) {
       if (contact.messages.length > 0) {
         return contact.messages[contact.messages.length - 1].date;
