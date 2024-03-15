@@ -71,6 +71,9 @@
 .absolute {
     position: absolute;
 }
+.jc-between{
+    justify-content: space-between;
+}
 
 section {
     margin: 100px 0;
@@ -313,7 +316,7 @@ body {
     border-radius: 10px;
     max-height: 50%;
     padding: 0.6rem;
-
+    width: 40%;
     & p span {
         display: none;
     }
@@ -395,37 +398,26 @@ body:has(.fa-magnifying-glass:active) .search-text {
     color: red;
 }
 
-.colourless-bubble a:hover+.bubble-opt,
-.colored-bubble a:hover+.bubble-opt {
+.colourless-bubble a:focus+.bubble-opt,
+.colored-bubble a:focus+.bubble-opt {
     display: block;
-    font-size: 0.6rem;
-    display: flex;
-    flex-direction: column;
+    font-size: 0.7rem;
     gap: 1rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
     right: 0;
-    background-color: rgba(128, 128, 128, 0.445);
-    border-radius: 20%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.268);
+    border-radius: 10%;
 
-
-    .opt-1 span {
-        color: yellow;
-    }
-
-    .opt-2 span {
-        color: red;
-    }
-
-    .opt-3 span {
-        color: green;
-    }
-
-    .opt-1,
-    .opt-2,
-    .opt-3 {
-        font-weight: bold;
-    }
 }
+.clourless-bubble{
+    transition: 1000ms;
+}
+ .opt-1 {
+        color: red;
+        font-weight: bold;
+        text-shadow: 1px 0px black;
+    }
 
 .contact {
     transition: 500ms;

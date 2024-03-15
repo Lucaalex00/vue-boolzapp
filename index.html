@@ -45,11 +45,10 @@
                     <div class="left-search-container">
                         <div class="left-search-bar debug flex">
                             <div><i class="logo fa-solid fa-magnifying-glass"></i></div>
-                            <input type="text" placeholder="Cerca o inizia una nuova chat">
+                            <input v-model.trim="contactSearchText" @keyup.enter="getSearchedContacts(activeContact.name)" type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    
-                    <div v-for="(contact,index) in contacts" class="left-contacts-menu debug">
+                    <div v-for="(contact,index) in filteredContacts" class="left-contacts-menu debug">
                         <div class="contact flex" @click="showMainConversation(contact)">
                             <div class="contact-left flex">
                                 <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
@@ -62,8 +61,8 @@
                         <div class="contact-timetable ">
                             12.00
                         </div>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <div id="right-container" class="relative col-8 col-sm-12 col-m-11 debug">
                     <header class="right-header debug flex">
@@ -73,7 +72,7 @@
                             </div>
                             <div class="right-header-info flex">
                                 <h4>{{activeContact ? activeContact.name : 'Contact'}}</h4>
-                                <p>Ultimo accesso oggi alle 16:26</p>
+                                <p>Ultimo accesso oggi</p>
                             </div>
                         </div>
                         <div class="right-header-right-container flex">
@@ -89,25 +88,23 @@
                     <main id="main-chat" class="debug flex p1">
                         <template v-if="activeContact!=null && activeContact.messages.length>0">
                         <!-- RIGHT -->
-                        <div class="relative flex" :class="message.status == 'sent' ? 'colored-bubble' : 'colourless-bubble'" v-for="message in activeContact.messages">
-                        <div>
-
-                            <p>{{message.message}}  </p>
-                        
-                            <a href="#">
-                                <i class="logo fa-solid fa-angle-down">
-                                </i>
-                            </a>
-                            <div class="bubble-opt absolute hidden">
-                                <div class="opt-2">
-                                    Elimina <span>&cross;</span>
+                            <div class="relative" :class="message.status == 'sent' ? 'colored-bubble' : 'colourless-bubble'" v-for="message in activeContact.messages">
+                                <div class="flex jc-between">
+                                    <p>{{message.message}} 
+                                    </p>
+                                    <a class="menu-hover-message" href="#">
+                                        <i class="logo fa-solid fa-angle-down"></i>
+                                    </a>  
+                                    <div class="bubble-opt absolute hidden">
+                                        <div class="opt-1">
+                                        Elimina <span>&cross;</span>
+                                        </div>
+                                    </div>
+                                    <div class="bubble-timetable absolute">{{message.date.slice(10)}}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="bubble-timetable absolute">{{message.date}}</div>
-                        </div>
-                    </div>                    
-                    </template>
+                            </div>                    
+                        </template>
                     <div v-else>
                         There aren't messages !!!
                     </div>

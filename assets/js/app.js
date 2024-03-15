@@ -164,7 +164,19 @@ createApp({
       activeContact: null,
       userText: "",
       contactText: "ok",
+      contactSearchText: "",
     };
+  },
+  computed: {
+    filteredContacts() {
+      if (!this.contactSearchText) {
+        return this.contacts;
+      }
+      const searchText = this.contactSearchText.toLowerCase();
+      return this.contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(searchText)
+      );
+    },
   },
   methods: {
     sendMessage() {
