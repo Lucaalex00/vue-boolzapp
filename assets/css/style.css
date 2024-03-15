@@ -399,8 +399,8 @@ body:has(.fa-magnifying-glass:active) .search-text {
     color: red;
 }
 
-.colourless-bubble a:focus+.bubble-opt,
-.colored-bubble a:focus+.bubble-opt {
+.colourless-bubble a:hover+.bubble-opt,
+.colored-bubble a:hover+.bubble-opt {
     display: block;
     font-size: 0.7rem;
     gap: 1rem;

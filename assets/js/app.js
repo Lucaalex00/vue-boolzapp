@@ -167,7 +167,7 @@ createApp({
     };
   },
   //Invoke a "COMPUTED" property
-  //That property is same as method, but it doesn't "RECALL" any function.
+  //This property is same as method, but it doesn't "RECALL" any function.
   //It remember and follow the user's instruction
   computed: {
     //f for contact's Filter
@@ -207,6 +207,13 @@ createApp({
           status: "sent",
         });
         console.log(this.userText);
+      }
+    },
+
+    //f for make user able to remove any message from activeContact conversation with a 'ANGLE-DOWN' icon over the message and a :hover selector CSS to show remove's menu.
+    removeMessage(mexIndex) {
+      if (this.activeContact != null) {
+        this.activeContact.messages.splice(mexIndex, 1);
       }
     },
 

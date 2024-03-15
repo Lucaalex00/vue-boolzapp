@@ -48,7 +48,7 @@
                             <input v-model.trim="contactSearchText" @keyup.enter="getSearchedContacts(activeContact.name)" type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    <div v-for="(contact) in filteredContacts" class="left-contacts-menu debug">
+                    <div v-for="(contact,index) in filteredContacts" class="left-contacts-menu debug">
                         <div class="contact flex" @click="showMainConversation(contact)">
                             <div class="contact-left flex">
                                 <div class="contact-img"><img :src="'./assets'+ contact.avatar" alt="Avatar">
@@ -88,7 +88,9 @@
                     <main id="main-chat" class="debug flex p1">
                         <template v-if="activeContact!=null && activeContact.messages.length>0">
                         <!-- RIGHT -->
-                            <div class="relative" :class="message.status == 'sent' ? 'colored-bubble' : 'colourless-bubble'" v-for="message in activeContact.messages">
+                            <div class="relative" 
+                            :class="message.status == 'sent' ? 'colored-bubble' : 'colourless-bubble'" 
+                            v-for="(message, index) in activeContact.messages">
                                 <div class="flex jc-between">
                                     <p>{{message.message}} 
                                     </p>
@@ -96,7 +98,7 @@
                                         <i class="logo fa-solid fa-angle-down"></i>
                                     </a>  
                                     <div class="bubble-opt absolute hidden">
-                                        <div class="opt-1">
+                                        <div class="opt-1" @click="removeMessage(index)">
                                         Elimina <span>&cross;</span>
                                         </div>
                                     </div>
